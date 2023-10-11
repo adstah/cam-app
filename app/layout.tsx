@@ -17,11 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-bs-theme="dark">
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
-      ></meta>
+      />
       <body className={inter.className}>
         <AuthServiceContextProvider>
           <AppContextProvider>{children}</AppContextProvider>

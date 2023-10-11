@@ -1,5 +1,11 @@
+import { PanelWindow } from "@/components/panel/panel-window/panel-window";
+
 const Page = () => {
-  return <div>panel</div>;
+  return (
+    <div>
+      <PanelWindow />
+    </div>
+  );
 };
 
 export default Page;

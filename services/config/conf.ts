@@ -1,5 +1,4 @@
 const BASE: RequestInit = {
-  cache: "no-store",
   credentials:
     process.env.NODE_ENV === "production" ? "same-origin" : "include",
 };
