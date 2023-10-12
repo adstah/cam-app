@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  uuid     String @id @default(uuid()) @db.Uuid
+  name     String
+  passHash String
+}
+
+model Camera {
+  uuid       String      @id @default(uuid()) @db.Uuid
+  location   String
+  url        String
+  detections Detection[]
+}
+
+model Detection {
+  id             Int      @id @default(autoincrement())
+  data           DateTime
+  detectedObject String
+  cameraId       String   @db.Uuid
+  camera         Camera   @relation(fields: [cameraId], references: [uuid])
+}
