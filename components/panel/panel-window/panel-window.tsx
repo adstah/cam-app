@@ -1,13 +1,9 @@
-import { CameraService } from "@/services/camera-service/camera.service";
+import { PanelCameras } from "../panel-cameras/panel-cameras";
 
-export const PanelWindow = async () => {
-  const { GETCamerasList } = CameraService;
-  const cameras = await GETCamerasList();
+export const PanelWindow = () => {
   return (
-    <ol>
-      {cameras.map((camera) => (
-        <li>{camera.uuid}</li>
-      ))}
-    </ol>
+    <div>
+      <PanelCameras />
+    </div>
   );
 };

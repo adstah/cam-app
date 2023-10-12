@@ -10,12 +10,8 @@ export const GET = async () => {
 };
 
 export const POST = async (req: Request) => {
-  const user = await prisma.camera.create({
-    data: {
-      location: "test location",
-      url: "http://",
-    },
-  });
+  const newCamera = await req.json();
+  const user = await prisma.camera.create({ data: newCamera });
   revalidateTag("cameras");
   return Response.json(user);
 };

@@ -14,3 +14,7 @@ export const ENDPOINTS = {
     GET_LIST: `${SERVER_URL}/cameras`,
   },
 };
+
+export const EDGE_ENDPOINTS = {
+  VIDEO: "/video-feed",
+};
