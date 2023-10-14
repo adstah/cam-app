@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AppContextProvider } from "../components/_providers/app-provider";
-import "./global-styles.css";
+import "./globals.css";
 import { AuthServiceContextProvider } from "@/services/auth-service/auth.service";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,12 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-bs-theme="dark">
+    <html lang="en" className="dark">
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-slate-900`}>
         <AuthServiceContextProvider>
           <AppContextProvider>{children}</AppContextProvider>
         </AuthServiceContextProvider>

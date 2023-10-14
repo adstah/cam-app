@@ -1,6 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import bootstrap
+import { createContext, useContext } from "react";
 
 interface AppContextI {}
 
@@ -11,9 +10,6 @@ interface AppContextProviderI {
 }
 
 export const AppContextProvider = ({ children }: AppContextProviderI) => {
-  useEffect(() => {
-    require("bootstrap/dist/js/bootstrap");
-  }, []);
   return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
 };
 

@@ -24,24 +24,20 @@ export const LogInWindow = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="container w-80 border-secondary"
-      style={{ maxWidth: 400 }}
-    >
-      <div className="form-group row">
+    <form onSubmit={handleSubmit} className="" style={{ maxWidth: 400 }}>
+      <div className="">
         <label htmlFor="username-input">Username</label>
         <input
-          className="form-control"
+          className=""
           id="username-input"
           onChange={handleOnChangeForm(ActionTypes.USERNAME)}
           value={username}
         />
       </div>
-      <div className="form-group row">
+      <div className="">
         <label htmlFor="passw-input">Password</label>
         <input
-          className="form-control"
+          className=""
           autoComplete="current-password"
           type="password"
           id="passw-input"
