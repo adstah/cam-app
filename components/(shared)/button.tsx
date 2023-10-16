@@ -1,6 +1,7 @@
-interface ButtonI {
+import { InputHTMLAttributes } from "react";
+
+interface ButtonI extends InputHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "danger";
-  type?: "button" | "submit";
   css?: string;
   children: React.ReactNode;
 }
@@ -10,6 +11,7 @@ export const Button = ({
   type = "button",
   children,
   css,
+  ...props
 }: ButtonI) => {
   const colorVariant = {
     primary:
@@ -19,8 +21,8 @@ export const Button = ({
   };
   return (
     <button
-      type={type}
-      className={`${colorVariant[variant]} hover:border-2 hover:brightness-110 font-bold py-2 px-4 rounded ${css}`}
+      className={`${colorVariant[variant]} hover:brightness-150 font-bold py-2 px-4 rounded ${css}`}
+      {...props}
     >
       {children}
     </button>

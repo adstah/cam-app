@@ -4,13 +4,22 @@ import { Button } from "./button";
 interface CameraDisplayI {
   srcUrl: string;
   location?: string;
+  cameraType?: "detection" | "background" | "basic";
 }
 
-export const CameraDisplay = ({ srcUrl, location }: CameraDisplayI) => {
+export const CameraDisplay = ({
+  srcUrl,
+  location,
+  cameraType = "basic",
+}: CameraDisplayI) => {
   return (
     <div className="relative">
-      {/* <img src={`${srcUrl}${EDGE_ENDPOINTS.VIDEO}`} /> */}
-      <img src={`http://localhost:3000/test-pic.jpg`} />
+      <img
+        src={`${srcUrl}${EDGE_ENDPOINTS.VIDEO}?cam-type=${cameraType}`}
+        alt="Couldn't load camera's image"
+        className="w-full"
+      />
+      {/* <img src={`http://localhost:3000/test-pic.jpg`} /> */}
       <p className="absolute top-0 left-0 bg-white opacity-50 text-slate-800 rounded-r-md p-1">
         {location}
       </p>

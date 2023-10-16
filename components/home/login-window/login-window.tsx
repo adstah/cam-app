@@ -4,6 +4,8 @@ import { Button } from "../../(shared)/button";
 import { reducer } from "./reducers";
 import { ActionTypes } from "./types";
 import { useAuthServiceContext } from "@/services/auth-service/auth.service";
+import { Input } from "@/components/(shared)/input";
+import Image from "next/image";
 
 export const LogInWindow = () => {
   const { logIn } = useAuthServiceContext();
@@ -24,27 +26,27 @@ export const LogInWindow = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="" style={{ maxWidth: 400 }}>
-      <div className="">
-        <label htmlFor="username-input">Username</label>
-        <input
-          className=""
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+      <label htmlFor="username-input" className="flex">
+        <span className="sr-only">Username</span>
+        <Image src="/icons/user.png" alt="Username" width={32} height={32} />
+        <Input
           id="username-input"
           onChange={handleOnChangeForm(ActionTypes.USERNAME)}
           value={username}
         />
-      </div>
-      <div className="">
-        <label htmlFor="passw-input">Password</label>
-        <input
-          className=""
+      </label>
+      <label htmlFor="passw-input" className="flex">
+        <span className="sr-only">Password</span>
+        <Image src="/icons/padlock.png" alt="Password" width={32} height={32} />
+        <Input
           autoComplete="current-password"
           type="password"
           id="passw-input"
           onChange={handleOnChangeForm(ActionTypes.PASSWORD)}
           value={password}
         />
-      </div>
+      </label>
       <Button type="submit">Log in</Button>
     </form>
   );

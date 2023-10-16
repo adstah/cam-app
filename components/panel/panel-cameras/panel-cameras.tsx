@@ -11,11 +11,16 @@ export const PanelCameras = async () => {
         {cameras.map(({ url, location }) => (
           <>
             <CameraDisplay srcUrl={url} location={location} />
-            <CameraDisplay srcUrl={url} location={location} />
-            <CameraDisplay srcUrl={url} location={location} />
-            <CameraDisplay srcUrl={url} location={location} />
-            <CameraDisplay srcUrl={url} location={location} />
-            <CameraDisplay srcUrl={url} location={location} />
+            <CameraDisplay
+              srcUrl={url}
+              location={location}
+              cameraType="detection"
+            />
+            <CameraDisplay
+              srcUrl={url}
+              location={location}
+              cameraType="background"
+            />
           </>
         ))}
       </div>
