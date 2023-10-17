@@ -6,7 +6,7 @@ export const SERVER_URL =
 export const ENDPOINTS = {
   USER: {
     AUTH: {
-      LOGIN: `${SERVER_URL}/user/auth/login`,
+      LOGIN: `${SERVER_URL}/user/auth`,
       LOGOUT: `${SERVER_URL}/user/auth/logout`,
     },
   },

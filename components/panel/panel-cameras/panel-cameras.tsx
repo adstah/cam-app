@@ -1,6 +1,5 @@
 import { CameraDisplay } from "@/components/(shared)/camera-display";
 import { CameraService } from "@/services/camera-service/camera.service";
-import { EDGE_ENDPOINTS } from "@/services/config/urls";
 
 export const PanelCameras = async () => {
   const { GETCamerasList } = CameraService;
