@@ -18,7 +18,7 @@ export const PanelCameras = async () => {
             <CameraDisplay
               srcUrl={url}
               location={location}
-              cameraType="background"
+              cameraType="movement"
             />
           </>
         ))}

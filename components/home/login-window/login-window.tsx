@@ -1,5 +1,11 @@
 "use client";
-import { ChangeEvent, FormEventHandler, useReducer } from "react";
+import {
+  ChangeEvent,
+  FormEventHandler,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { Button } from "../../(shared)/button";
 import { reducer } from "./reducers";
 import { ActionTypes } from "./types";
@@ -7,13 +13,16 @@ import { useAuthServiceContext } from "@/services/auth-service/auth-service-LEGA
 import { Input } from "@/components/(shared)/input";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useParams, useSearchParams } from "next/navigation";
 
 export const LogInWindow = () => {
-  // const { logIn } = useAuthServiceContext();
+  const params = useSearchParams();
   const [{ username, password }, dispatch] = useReducer(reducer, {
     username: "",
     password: "",
   });
+  const [isWrongCredentials, setIsWrongCredentials] = useState(false);
 
   const handleOnChangeForm =
     (type: ActionTypes) =>
@@ -23,14 +32,22 @@ export const LogInWindow = () => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (ev) => {
     ev.preventDefault();
-    // logIn({ username, password });
     signIn("credentials", { username, password, callbackUrl: "/panel" }).then(
-      () => alert("loggin...")
+      (res) => console.log(res)
     );
   };
 
+  useEffect(() => {
+    switch (params.get("error")) {
+      case "CredentialsSignin": {
+        setIsWrongCredentials(true);
+        break;
+      }
+    }
+  }, [params]);
+
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 m-2">
       <label htmlFor="username-input" className="flex">
         <span className="sr-only">Username</span>
         <Image src="/icons/user.png" alt="Username" width={32} height={32} />
@@ -52,6 +69,9 @@ export const LogInWindow = () => {
         />
       </label>
       <Button type="submit">Log in</Button>
+      {isWrongCredentials && (
+        <p className="text-center text-red-500">Wrong username or password</p>
+      )}
     </form>
   );
 };

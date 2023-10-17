@@ -1,7 +1,10 @@
-import { authenticate } from "@/services/auth-service/auth-service";
+import { PrismaClient } from "@prisma/client";
 import NextAuth from "next-auth";
 import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcrypt";
+
+const prisma = new PrismaClient();
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -12,24 +15,25 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // console.log(credentials, "XDDD\n", req);
         if (credentials?.username && credentials?.password) {
-          //   const res = await authenticate(credentials);
-          //   console.log("res", res);
-          if (true) {
-            return { name: credentials.username };
-          } else {
-            return null;
+          const user = await prisma.user.findFirst({
+            where: {
+              username: credentials?.username,
+            },
+          });
+          if (user && bcrypt.compareSync(credentials.password, user.passHash)) {
+            return { name: user.username, id: user.uuid };
           }
-        } else {
           return null;
         }
+        return null;
       },
     }),
   ],
   session: { strategy: "jwt" },
   pages: {
     signIn: "/",
+    error: "/",
   },
 };
 
