@@ -1,15 +1,16 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { DetectionsBar } from "../detections-bar/detections-bar";
-import { PanelCameras } from "../panel-cameras/panel-cameras";
 
-export const PanelWindow = () => {
+interface PanelWindowI {
+  children: React.ReactElement;
+}
+
+export const PanelWindow = ({ children }: PanelWindowI) => {
   const { data: session } = useSession();
   return (
     <div>
       <p>{session?.user?.name}</p>
-      {/* <PanelCameras /> */}
-      {/* <DetectionsBar /> */}
+      {children}
     </div>
   );
 };
