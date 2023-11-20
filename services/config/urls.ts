@@ -11,7 +11,7 @@ export const ENDPOINTS = {
     },
   },
   CAMERAS: {
-    GET_LIST: `${SERVER_URL}/cameras`,
+    GET_CAM: `${SERVER_URL}/cameras`,
   },
 };
 

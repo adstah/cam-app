@@ -1,26 +1,23 @@
-// "use client";
-import { useNavbarContext } from "./navbar-context";
+"use client";
 import { useSession } from "next-auth/react";
 
-export const NavbarHead = async () => {
-  const { data: user } = useSession();
-  // const { setIsNavbarSideOpen } = useNavbarContext();
+interface NavbarHeadI {
+  handleToggleNav: () => void;
+}
 
-  // const handleToggleNavbarSide = () => {
-  //   setIsNavbarSideOpen((open) => !open);
-  // };
+export const NavbarHead = ({ handleToggleNav }: NavbarHeadI) => {
+  const { data: user } = useSession();
 
   return (
-    <div className="flex justify-end">
-      <nav className="bg-slate-700 p-4 mb-2 rounded-bl-lg shadow-sm shadow-slate-600">
-        {/* <p className="text-slate-300">{`🚹${user?.user?.name}`}</p> */}
+    <div className="flex justify-end absolute -translate-x-full shadow">
+      <div className="bg-slate-700 p-4 mb-2 rounded-bl-lg shadow-sm shadow-slate-600">
         <button
-          // onClick={handleToggleNavbarSide}
+          onClick={handleToggleNav}
           className="border-b-2 border-slate-700 hover:border-b-slate-100"
         >
-          {"<- Options"}
+          {"<-"}
         </button>
-      </nav>
+      </div>
     </div>
   );
 };

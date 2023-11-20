@@ -1,18 +1,11 @@
-import { PanelWindow } from "@/components/panel/panel-window/panel-window";
-import { DetectionsBar } from "@/components/panel/detections-bar/detections-bar";
 import { PanelCameras } from "@/components/panel/panel-cameras/panel-cameras";
 
-const Page = async () => {
+function Page() {
   return (
     <div>
-      <PanelWindow>
-        <>
-          <PanelCameras />
-          <DetectionsBar />
-        </>
-      </PanelWindow>
+      <PanelCameras />
     </div>
   );
-};
+}
 
 export default Page;

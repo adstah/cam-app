@@ -14,6 +14,8 @@ model User {
   uuid     String @id @default(uuid()) @db.Uuid
   username String @unique
   passHash String
+
+  @@map("users")
 }
 
 model Camera {
@@ -21,6 +23,8 @@ model Camera {
   location   String
   url        String
   detections Detection[]
+
+  @@map("cameras")
 }
 
 model Detection {
@@ -29,4 +33,6 @@ model Detection {
   detectedObject String
   cameraId       String   @db.Uuid
   camera         Camera   @relation(fields: [cameraId], references: [uuid])
+
+  @@map("detections")
 }

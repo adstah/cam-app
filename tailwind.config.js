@@ -12,4 +12,11 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  theme: {
+    extend: {
+      boxShadow: {
+        md: "-3px -3px 20px 0px black;",
+      },
+    },
+  },
 };

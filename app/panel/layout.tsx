@@ -1,7 +1,4 @@
-"use client";
-import { NavbarContextProvider } from "@/components/panel/navbar/navbar-context";
-import { NavbarHead } from "@/components/panel/navbar/navbar-head";
-import { NavbarSide } from "@/components/panel/navbar/navbar-side";
+import { Navbar } from "@/components/panel/navbar/navbar";
 
 interface LayoutI {
   children: React.ReactElement;
@@ -9,17 +6,11 @@ interface LayoutI {
 
 export default function Layout({ children }: LayoutI) {
   return (
-    <NavbarContextProvider>
-      <NavbarHead />
-      <NavbarSide />
-      {children}
-      <button
-        onClick={() => {
-          console.log("click");
-        }}
-      >
-        hbottmn
-      </button>
-    </NavbarContextProvider>
+    <div className="">
+      <div className="">
+        <Navbar />
+      </div>
+      <div className="">{children}</div>
+    </div>
   );
 }

@@ -1,4 +1,3 @@
-"use client";
 import { createContext, useContext } from "react";
 import { AuthTO } from "./types";
 import { ENDPOINTS } from "../config/urls";

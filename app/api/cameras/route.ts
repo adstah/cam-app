@@ -11,7 +11,13 @@ export const GET = async () => {
 
 export const POST = async (req: Request) => {
   const newCamera = await req.json();
-  const user = await prisma.camera.create({ data: newCamera });
+  let savedCamera = await prisma.camera.findFirst({
+    where: { url: { contains: newCamera.url } },
+  });
+  console.log(savedCamera);
+  if (!savedCamera) {
+    savedCamera = await prisma.camera.create({ data: newCamera });
+  }
   revalidateTag("cameras");
-  return Response.json(user);
+  return Response.json(savedCamera);
 };

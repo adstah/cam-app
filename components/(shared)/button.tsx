@@ -1,3 +1,4 @@
+"use client";
 import { InputHTMLAttributes } from "react";
 
 interface ButtonI extends InputHTMLAttributes<HTMLButtonElement> {
